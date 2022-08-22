@@ -1,13 +1,10 @@
+const getHttp = require('./fetch');
+
+// excerpt from index.js
 module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
 
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+    const json = await getHttp(context);
+    context.log(json);
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
+    // rest of the function down here
 }
